@@ -52,7 +52,7 @@ df.to_sql("travels", conn, index=False, if_exists="replace")
 ```
 
 ![Города разведка](https://drive.google.com/uc?export=view&id=11e5RdNIKY4D4y7WtBuglWLL1X5zhu7c_)
-![Города разведка](https://drive.google.com/uc?export=view&id=11e5RdNIKY4D4y7WtBuglWLL1X5zhu7c_)
+![Заказы разведка](https://drive.google.com/uc?export=view&id=1wJlRjvmOUvvRt_W5UapoUkvi0D-onr_C)
 
 
 ## 🔎 Доля пользователей, использующих фильтры
@@ -131,11 +131,13 @@ print()
 print('Топ 10 городов с наименьшим использованием фильтров')
 display(bottom_cities)
 ```
-**Топ 10 городов по использованию фильтров**
-![Наибольшие города](https://drive.google.com/uc?export=view&id=1qnBzhjpi-EjWndYw4Ep7NpylFcXJx_1d)
+### 🔝 Топ 10 городов по использованию фильтров
+![Топ города](https://drive.google.com/uc?export=view&id=1qnBzhjpi-EjWndYw4Ep7NpylFcXJx_1d)
 
-**Топ 10 городов с наименьшим использованием фильтро**
-![Наименьшие города](https://drive.google.com/uc?export=view&id=1w177ira2UjBhvWIdDX4bb48e617ARtMg)
+---
+
+### 🔻 Топ 10 городов с наименьшим использованием фильтров
+![Аутсайдеры города](https://drive.google.com/uc?export=view&id=1w177ira2UjBhvWIdDX4bb48e617ARtMg)
 
 ## 🧩 Анализ взаимодействия с элементами интерфейса
 
@@ -360,11 +362,10 @@ FROM dau
 GROUP BY 1
 ORDER BY month
 """
-```
+
 result3 = pd.read_sql(avg_dau, conn).set_index('month')
 display(result3)
 ```
-
 ![Средний DAU](https://drive.google.com/uc?export=view&id=1b0qImzuXgO0mCMmiAeO9_McD6NPRnJ8g)
 
 ## 📊 Расчёт MAU (Monthly Active Users)
