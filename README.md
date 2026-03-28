@@ -51,6 +51,10 @@ conn = sqlite3.connect(":memory:")
 df.to_sql("travels", conn, index=False, if_exists="replace")
 ```
 
+![Города разведка](https://drive.google.com/uc?export=view&id=11e5RdNIKY4D4y7WtBuglWLL1X5zhu7c_)
+![Города разведка](https://drive.google.com/uc?export=view&id=11e5RdNIKY4D4y7WtBuglWLL1X5zhu7c_)
+
+
 ## 🔎 Доля пользователей, использующих фильтры
 
 ```python
@@ -80,6 +84,7 @@ FROM kolvo
 result1 = pd.read_sql(filters, conn)
 display(result1)
 ```
+![Доля пользователей](https://drive.google.com/uc?export=view&id=1sP9NB2m-GWGEVHyHTtRpdGkxNS3f6-aM)
 
 ## 🌍 Использование фильтров по городам
 
@@ -114,6 +119,7 @@ result2 = pd.read_sql(cities, conn).set_index('city')
 # Топ 10 по использованию фильтров
 top_cities = result2.sort_values('filter_rate', ascending=False).head(10)
 
+
 # Топ 10 с наименьшим использованием
 bottom_cities = result2.sort_values('filter_rate').head(10)
 
@@ -125,6 +131,12 @@ print()
 print('Топ 10 городов с наименьшим использованием фильтров')
 display(bottom_cities)
 ```
+**Топ 10 городов по использованию фильтров**
+![Наибольшие города](https://drive.google.com/uc?export=view&id=1qnBzhjpi-EjWndYw4Ep7NpylFcXJx_1d)
+
+**Топ 10 городов с наименьшим использованием фильтро**
+![Наименьшие города](https://drive.google.com/uc?export=view&id=1w177ira2UjBhvWIdDX4bb48e617ARtMg)
+
 ## 🧩 Анализ взаимодействия с элементами интерфейса
 
 ```python
@@ -157,6 +169,7 @@ ORDER BY 2 DESC
 result3 = pd.read_sql(section, conn).set_index('section')
 display(result3)
 ```
+![Наименьшие города](https://drive.google.com/uc?export=view&id=1w177ira2UjBhvWIdDX4bb48e617ARtMg)
 
 ## 💰 Использование ценовых фильтров
 
@@ -183,6 +196,7 @@ FROM price_kolvo
 result4 = pd.read_sql(price, conn)
 display(result4)
 ```
+![Ценовой фильтр](https://drive.google.com/uc?export=view&id=1P8Sxef3Dhz2rw8rn88lAYlFgv8K0U2HE)
 
 ## 🧪 A/B-тестирование фильтра по времени начала экскурсии
 
@@ -327,6 +341,31 @@ ORDER BY date
 result1 = pd.read_sql(dau, conn).set_index('date')
 display(result1)
 ```
+![DAU](https://drive.google.com/uc?export=view&id=1PNS1fAz1ECE-Brkhs67hEqBEnsA9736e)
+
+## 📊 Средний DAU по месяцам
+
+```python
+avg_dau = """
+WITH dau as (
+SELECT order_date as date, COUNT(DISTINCT user_id) as DAU 
+FROM orders
+GROUP BY order_date
+ORDER BY date	
+)
+
+SELECT strftime('%Y-%m', date) as month, 
+       ROUND(AVG(DAU), 2) as AVG_DAU 
+FROM dau
+GROUP BY 1
+ORDER BY month
+"""
+```
+result3 = pd.read_sql(avg_dau, conn).set_index('month')
+display(result3)
+```
+
+![Средний DAU](https://drive.google.com/uc?export=view&id=1b0qImzuXgO0mCMmiAeO9_McD6NPRnJ8g)
 
 ## 📊 Расчёт MAU (Monthly Active Users)
 
@@ -341,6 +380,7 @@ ORDER BY month
 result2 = pd.read_sql(mau, conn).set_index('month')
 display(result2)
 ```
+![MAU](https://drive.google.com/uc?export=view&id=1BXvUIUEBxcl1TvqAFCaRbBS15fI9PFHN)
 
 ## 💸 Пользователи с тратами выше среднего
 
