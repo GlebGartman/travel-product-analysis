@@ -401,6 +401,7 @@ WHERE total_payment > (SELECT AVG(total_payment) FROM user_payments)
 plat = pd.read_sql(plat_avg, conn).set_index('user_id')
 display(plat)
 ```
+![Траты выше среднего](https://drive.google.com/uc?export=view&id=1xAvr9_fzLayIHmexTH9hsD4R7i9UaoeD)
 
 ## 👥 Сегментация пользователей по количеству заказов
 
@@ -412,8 +413,8 @@ more_than_three = (orders_user_count['order_id'] > 3).sum()
 
 print(f'''Кол-во пользователей с одним заказом: {one_order}
 Кол-во пользователей с более, чем тремя заказами: {more_than_three}''')
-
 ```
+![Сегментация](https://drive.google.com/uc?export=view&id=1NIBwzEr6fMFZ6R9rr8Bhy3IEw8FAqtdo)
 
 ## 🏆 Пользователь с максимальной выручкой (GMV)
 
@@ -423,3 +424,4 @@ top_user = user_gmv.loc[[user_gmv['gmv'].idxmax()], :]
 
 display(top_user)
 ```
+![Максимальная выручка](https://drive.google.com/uc?export=view&id=1JPXjwHMBCQiJlcAq-3mmvoa_MpcsnEJR)
